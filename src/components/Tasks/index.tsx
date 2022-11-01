@@ -1,3 +1,4 @@
+import { Task } from "../Task"
 import styles from "./tasks.module.css"
 
 export function Tasks() {
@@ -13,6 +14,11 @@ export function Tasks() {
                     <span>5 de 8</span>
                 </div>
             </header>
+
+            <div className={styles.taskList}>
+                <Task />
+                <Task />
+            </div>
         </section>
     )
 }
