@@ -1,0 +1,40 @@
+.tasks {
+    width: 100%;
+    max-width: 46rem;
+    margin: 0 auto;
+    margin-top: 5.625rem;
+    padding: 0 1rem;
+}
+
+.tasks header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    margin-top: 1.5rem;
+}
+
+.tasks header div {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+}
+
+.tasks header p {
+    color: var(--blue);
+    font-size: 0.875rem;
+    font-weight: 700;
+}
+
+.tasks p.textPurple {
+    color: var(--purple);
+}
+
+.tasks header span {
+    background: var(--gray-400);
+    color: var(--gray-200);
+    border-radius: 999px;
+    padding: 2px 8px;
+    font-size: 0.75rem;
+    font-weight: 700;
+}
