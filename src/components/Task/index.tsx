@@ -4,16 +4,17 @@ import { ITask } from "../../App";
 
 interface Props {
     task: ITask;
+    onDeleteTask: (taskId: string) => void;
 }
 
-export function Task({ task }: Props) {
+export function Task({ task, onDeleteTask }: Props) {
     return (
         <div className={styles.taskContainer}>
             <button>
                 <div />
             </button>
             <p>{task.content}</p>
-            <button className={styles.deleteTask}>
+            <button className={styles.deleteTask} onClick={() => onDeleteTask(task.id)}>
                 <TbTrash size={20} />
             </button>
         </div>
