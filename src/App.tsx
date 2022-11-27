@@ -1,7 +1,9 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Header } from "./components/header"
 import { Tasks } from "./components/Tasks"
 import { v4 as uuidv4 } from 'uuid';
+
+const LOCAL_STORAGE_KEY = "todo_project:saved_tasks"
 
 export interface ITask {
   id: string,
@@ -13,8 +15,24 @@ function App() {
 
   const [tasks, setTasks] = useState<ITask[]>([]);
 
+  function setTasksLocally(newTasks: ITask[]) {
+    setTasks(newTasks);
+    localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(newTasks))
+  }
+
+  function getTasksSavedLocally() {
+    const savedTasks = localStorage.getItem(LOCAL_STORAGE_KEY)
+    if (savedTasks) {
+      setTasks(JSON.parse(savedTasks))
+    }
+  }
+
+  useEffect(() => {
+    getTasksSavedLocally()
+  }, [])
+
   function handleAddNewTask(taskTitle: string) {
-    setTasks([
+    setTasksLocally([
       ...tasks,
       {
         id: uuidv4(),
@@ -29,7 +47,7 @@ function App() {
 
     const tasksWithoutTheDeletedOne = tasks.filter(task => task.id !== taskId)
 
-    setTasks(tasksWithoutTheDeletedOne)
+    setTasksLocally(tasksWithoutTheDeletedOne)
 
   }
 
@@ -43,7 +61,7 @@ function App() {
       }
       return task;
     })
-    setTasks(newTasks)
+    setTasksLocally(newTasks)
   }
 
 
