@@ -1,3 +1,4 @@
+import { TbClipboardText } from "react-icons/tb";
 import { ITask } from "../../App"
 import { Task } from "../Task"
 import styles from "./tasks.module.css"
@@ -27,6 +28,15 @@ export function Tasks({ tasks, onDeleteTask, onCompleteTask }: Props) {
 
             <div className={styles.taskList}>
                 {tasks.map((task) => (<Task key={task.id} task={task} onDeleteTask={onDeleteTask} onCompleteTask={onCompleteTask} />))}
+                {tasks.length <= 0 && (
+                    <section className={styles.empty}>
+                        <TbClipboardText size={50} />
+                        <div>
+                            <p>You still don't have any task.</p>
+                            <span>Create new tasks and organize your todo items</span>
+                        </div>
+                    </section>
+                )}
             </div>
         </section>
     )
